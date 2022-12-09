@@ -61,7 +61,7 @@ export default class Chat extends React.Component {
   }
   render() {
     return (
-      <View style={[styles.container, { backgroundColor: this.props.route.params.color }]}>
+      <View style={[styles.container]}>
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
