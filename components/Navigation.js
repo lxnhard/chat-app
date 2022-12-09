@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import react native gesture handler
 import 'react-native-gesture-handler';
 // import react Navigation
@@ -11,7 +11,7 @@ import Chat from './Chat';
 // Create the navigator
 const Stack = createStackNavigator();
 
-export default class Navigation extends Component {
+export default class Navigation extends React.Component {
   constructor(props) {
     super(props);
   }
