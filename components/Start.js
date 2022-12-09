@@ -37,6 +37,7 @@ export default class Start extends React.Component {
                 onChangeText={(text) => this.setState({ input: text })}
                 value={this.state.input}
                 placeholder="Your name"
+                placeholderTextColor={"rgba(117, 112, 131, 1)"}
               />
             </View>
             {/* Color picker */}
@@ -50,12 +51,15 @@ export default class Start extends React.Component {
               </View>
             </View>
             {/* Start Chat button */}
-            <Button
+            <TouchableOpacity
               style={styles.button}
               title="Start Chatting"
               color="#757083"
               onPress={() => this.props.navigation.navigate('Chat', { username: this.state.input, color: this.state.color })}
-            />
+            >
+              <Text
+                style={styles.buttonText}>Start Chatting</Text>
+            </TouchableOpacity>
           </View>
         </ImageBackground >
 
@@ -105,12 +109,12 @@ const styles = StyleSheet.create({
     lineHeight: 50,
     fontSize: 16,
     fontWeight: '300',
-    color: '#757083',
+    color: '#000',
     paddingTop: 0,
     paddingBottom: 0
   },
   colorpickerContainer: {
-    flex: 2,
+    flex: 3,
     marginTop: 20
   },
   colorsText: {
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderWidth: 1.5,
-    borderColor: "#757083",
+    borderColor: "rgba(117, 112, 131, 0.5)",
     marginRight: 15,
     borderRadius: 30,
     justifyContent: "center",
@@ -158,8 +162,14 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
-    fontSize: 16,
+    backgroundColor: "#757083",
+    justifyContent: "center",
+    borderRadius: 5
+  },
+  buttonText: {
+    fontSize: 20,
     fontWeight: '600',
-    color: "white"
+    color: "white",
+    textAlign: "center"
   }
 });
