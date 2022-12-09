@@ -4,8 +4,9 @@ import { StyleSheet, View, Text, Button, ImageBackground, TextInput, TouchableOp
 const backgroundImage = require('../assets/background_image.png');
 // const icon = require('../assets/icon.svg');
 
-
+// start component
 export default class Start extends React.Component {
+  // state variables: input string (name) and color
   constructor(props) {
     super(props);
     this.state = {
@@ -14,6 +15,7 @@ export default class Start extends React.Component {
     };
   }
 
+  // handler: change color state + navigate to chat
   onPressColor = (color) => {
     this.setState({ color: color });
     this.props.navigation.navigate('Chat', { username: this.state.input, color: color });
@@ -22,10 +24,14 @@ export default class Start extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        {/* background image */}
         <ImageBackground source={backgroundImage} resizeMode="cover" style={styles.image}>
+          {/* title */}
           <Text style={styles.title}>Chat app</Text>
+          {/* all controls */}
           <View style={styles.controls}>
             <View style={styles.inputContainer}>
+              {/* Name input */}
               <TextInput
                 style={styles.input}
                 onChangeText={(text) => this.setState({ input: text })}
@@ -33,7 +39,7 @@ export default class Start extends React.Component {
                 placeholder="Your name"
               />
             </View>
-
+            {/* Color picker */}
             <View style={styles.colorpickerContainer}>
               <Text style={styles.colorsText}>Choose Background Color:</Text>
               <View style={styles.colorsContainer}>
@@ -43,6 +49,7 @@ export default class Start extends React.Component {
                 <View style={this.state.color === "#B9C6AE" ? styles.colorActive : styles.colorInactive}><TouchableOpacity style={[styles.color, styles.color4]} onPress={() => this.onPressColor('#B9C6AE')}></TouchableOpacity></View>
               </View>
             </View>
+            {/* Start Chat button */}
             <Button
               style={styles.button}
               title="Start Chatting"
