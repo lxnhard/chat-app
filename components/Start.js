@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Platform, KeyboardAvoidingView, ImageBackground, TextInput, TouchableOpacity } from 'react-native';
 
 const backgroundImage = require('../assets/background_image.png');
 // const icon = require('../assets/icon.svg');
@@ -62,7 +62,7 @@ export default class Start extends React.Component {
             </TouchableOpacity>
           </View>
         </ImageBackground >
-
+        {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
       </View >
     )
   }
@@ -115,13 +115,13 @@ const styles = StyleSheet.create({
   },
   colorpickerContainer: {
     flex: 3,
-    marginTop: 20
+    marginTop: 10
   },
   colorsText: {
     fontSize: 16,
     fontWeight: '300',
     color: '#757083',
-    marginBottom: 20
+    marginBottom: 10
   },
   colorsContainer: {
     flexDirection: "row"
