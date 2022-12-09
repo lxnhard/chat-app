@@ -18,7 +18,7 @@ export default class Start extends React.Component {
   // handler: change color state + navigate to chat
   onPressColor = (color) => {
     this.setState({ color: color });
-    this.props.navigation.navigate('Chat', { username: this.state.input, color: color });
+    // this.props.navigation.navigate('Chat', { username: this.state.input, color: color });
   }
 
   render() {
@@ -41,7 +41,7 @@ export default class Start extends React.Component {
             </View>
             {/* Color picker */}
             <View style={styles.colorpickerContainer}>
-              <Text style={styles.colorsText}>Choose Background Color:</Text>
+              <Text style={styles.colorsText}>Choose your color:</Text>
               <View style={styles.colorsContainer}>
                 <View style={this.state.color === "#090C08" ? styles.colorActive : styles.colorInactive}><TouchableOpacity style={[styles.color, styles.color1]} onPress={() => this.onPressColor('#090C08')}></TouchableOpacity></View>
                 <View style={this.state.color === "#474056" ? styles.colorActive : styles.colorInactive}><TouchableOpacity style={[styles.color, styles.color2]} onPress={() => this.onPressColor('#474056')}></TouchableOpacity></View>
