@@ -25,12 +25,12 @@ export default class Chat extends React.Component {
       appId: "1:458218301168:web:43ac7800cdcf1da4e4c435"
     };
 
-
     // Initialize Firebase
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
 
+    // set firestore reference messages
     this.referenceChatMessages = firebase.firestore().collection("messages");
   }
 
@@ -39,9 +39,10 @@ export default class Chat extends React.Component {
     let name = this.props.route.params.username;
     this.props.navigation.setOptions({ title: name });
 
-
+    // set firestore reference messages
     this.referenceChatMessages = firebase.firestore().collection('messages');
 
+    // authorize firebase
     this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
       if (!user) {
         await firebase.auth().signInAnonymously();
@@ -60,6 +61,7 @@ export default class Chat extends React.Component {
 
   }
 
+  // unsuscribe 
   componentWillUnmount() {
     if (this.isConnected) {
       this.unsubscribe();
@@ -68,6 +70,7 @@ export default class Chat extends React.Component {
   }
 
 
+  // retrieve snapshot of messages when changed
   onCollectionUpdate = (querySnapshot) => {
     const messages = [];
     // go through each document
@@ -87,6 +90,7 @@ export default class Chat extends React.Component {
     this.setState({ messages });
   }
 
+  // add message to firestore
   addMessage = (message) => {
     this.referenceChatMessages.add({
       _id: message[0]._id,
@@ -115,6 +119,7 @@ export default class Chat extends React.Component {
         {...props}
         wrapperStyle={{
           right: {
+            // customize active user bubble color
             backgroundColor: this.props.route.params.color
           }
         }}
