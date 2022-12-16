@@ -68,6 +68,7 @@ export default class Chat extends React.Component {
       } else {
         // get messages from local storage if not online
         this.getMessages();
+        this.getUser();
         this.setState({ isConnected: false });
       }
     });
@@ -96,10 +97,32 @@ export default class Chat extends React.Component {
     }
   };
 
+  // get user from local AsyncStorage
+  async getUser() {
+    let user = '';
+    try {
+      user = await AsyncStorage.getItem('user') || [];
+      this.setState({
+        user: JSON.parse(user)
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   // save messages to local AsyncStorage
   async saveMessages() {
     try {
       await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  // save user to local AsyncStorage
+  async saveUser() {
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(this.state.user));
     } catch (error) {
       console.log(error.message);
     }
@@ -146,8 +169,10 @@ export default class Chat extends React.Component {
       previousState => ({
         messages: GiftedChat.append(previousState.messages, messages),
       }), () => {
-        // callback: after saving state, call messages
+        // callback: after saving state, save messages + user
         this.saveMessages();
+        this.saveUser();
+
       });
   }
 
