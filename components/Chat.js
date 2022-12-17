@@ -1,12 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
-import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat';
+import { GiftedChat, Bubble, InputToolbar, SystemMessage } from 'react-native-gifted-chat';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from '@react-native-community/netinfo';
 
 
 const firebase = require('firebase');
 require('firebase/firestore');
+
+// offline alert system message
+const offlineAlert = {
+  _id: 1,
+  text: 'You are currently offline. Messages can\'t be updated or sent.',
+  system: true
+};
 
 // Chat component
 export default class Chat extends React.Component {
@@ -202,13 +209,28 @@ export default class Chat extends React.Component {
     }
   }
 
+  // custom system message when offline
+  renderSystemMessage(props) {
+    if (!this.state.isConnected) {
+      return (
+        <SystemMessage
+          {...props}
+          textStyle={styles.systemMessage}
+        />
+      )
+    } else { }
+  }
+
   render() {
     return (
       <View style={[styles.container]}>
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
-          messages={this.state.messages}
+          renderSystemMessage={this.renderSystemMessage.bind(this)}
+          // if offline, append offlineAlert message before message array
+          messages={this.state.isConnected ? this.state.messages : [offlineAlert, ...this.state.messages]}
+          // messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={{
             _id: this.state.user._id
@@ -227,5 +249,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     textAlign: "center"
+  },
+  systemMessage: {
+    color: "red"
   }
 })
