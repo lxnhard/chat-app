@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
 import { GiftedChat, Bubble, InputToolbar, SystemMessage } from 'react-native-gifted-chat';
+import CustomActions from './CustomActions';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from '@react-native-community/netinfo';
 
@@ -221,6 +222,11 @@ export default class Chat extends React.Component {
     } else { }
   }
 
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
+
+
   render() {
     return (
       <View style={[styles.container]}>
@@ -228,6 +234,7 @@ export default class Chat extends React.Component {
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
           renderSystemMessage={this.renderSystemMessage.bind(this)}
+          renderActions={this.renderCustomActions}
           // if offline, append offlineAlert message before message array
           messages={this.state.isConnected ? this.state.messages : [offlineAlert, ...this.state.messages]}
           // messages={this.state.messages}
