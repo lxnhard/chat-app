@@ -18,7 +18,46 @@ A chat app for mobile devices using React Native. The app provides users with a 
 - Google Firebase
 - Gifted Chat
 
-### What I learned
+## Getting things started 
+
+### Prerequisites: Expo
+
+- Install [Expo](https://expo.io/): `npm install expo-cli`
+
+- Install Expo app on your mobile device or use an emulator
+
+### Installation
+
+- Install dependencies: `npm i`
+
+- Start the chat app via: `npm start`
+
+- Launch app on physical device: scan QR code in Expo GUI
+
+- Launch app on emulator: Press "Run on Android device/emulator in Expo GUI
+
+## Set up data storage (Firestore)
+
+- Sign in at [Google Firebase/Firestore](https://firebase.google.com/) 
+- Go to console, start in test mode
+- Settings/General/Your apps => Click "Firestore for Web" and copy the contents of the `config` object.
+- In app file Components/Chat.js, replace Firebase config data with the copied credentials
+
+> Chat.js
+>
+> ```javascript
+> firebase.initializeApp({
+>   apiKey: 'your-api-key',
+>   authDomain: 'your-authdomain',
+>   databaseURL: 'your-database-url',
+>   projectId: 'your-project-id',
+>   storageBucket: 'your-storage-bucket',
+>   messagingSenderId: 'your-messaging-sender-id',
+>   appId: 'your-app-id',
+> });
+> ```
+
+## What I learned
 
 - Principles for programming an android app with React Native and Expo
 - Mobile UI design principles
