@@ -11,10 +11,10 @@ import MapView from 'react-native-maps';
 const firebase = require('firebase');
 require('firebase/firestore');
 
-// offline alert system message
-const offlineAlert = {
+// declare empty offline alert system message
+let offlineAlert = {
   _id: 1,
-  text: 'You are currently offline. Messages can\'t be updated or sent.',
+  text: '',
   system: true
 };
 
@@ -78,6 +78,13 @@ export default class Chat extends React.Component {
           this.unsubscribe = this.referenceChatMessages.orderBy('createdAt', 'desc').onSnapshot(this.onCollectionUpdate);
         });
       } else {
+        // update offline alert system message
+        offlineAlert = {
+          _id: 1,
+          text: 'You are currently offline. Messages can\'t be updated or sent.',
+          system: true
+        };
+
         // get messages from local storage if not online
         this.getMessages();
         this.getUser();
@@ -166,7 +173,6 @@ export default class Chat extends React.Component {
   // add message to firestore
   addMessage = (message) => {
 
-    console.log(message[0]);
     this.referenceChatMessages.add({
       _id: message[0]._id,
       createdAt: message[0].createdAt,
