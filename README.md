@@ -1,6 +1,14 @@
 # Chat App
 A chat app for mobile devices using React Native. The app provides users with a chat interface and options to share images and their location. The app is based on React Native, Expo, and Google Firestore Database. 
 
+## Table of contents
+
+- [Key Features](#key-features)
+- [Built with](#built-with)
+- [Setup instructions](#setup-instructions)
+- [What I learned](#what-i-learned)
+
+
 <img  src="./screenshot.png" width="600" /> 
 
 ## Key Features
@@ -18,7 +26,7 @@ A chat app for mobile devices using React Native. The app provides users with a 
 - Google Firebase
 - Gifted Chat
 
-## Getting things started 
+## Setup instructions 
 
 ### Prerequisites: Expo
 
@@ -36,7 +44,7 @@ A chat app for mobile devices using React Native. The app provides users with a 
 
 - Launch app on emulator: Press "Run on Android device/emulator in Expo GUI
 
-## Set up data storage (Firestore)
+### Data storage (Firestore)
 
 - Sign in at [Google Firebase/Firestore](https://firebase.google.com/) 
 - Go to console, start in test mode
