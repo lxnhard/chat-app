@@ -1,8 +1,7 @@
 # Chat App
 A chat app for mobile devices using React Native. The app provides users with a chat interface and options to share images and their location. The app is based on React Native, Expo, and Google Firestore Database. 
 
-## Screenshot
-| <img  src="./screenshot.png" width="600" /> 
+<img  src="./screenshot.png" width="600" /> 
 
 ## Key Features
 - A page where users can enter their name and choose a background color for the chat screen before joining the chat.
