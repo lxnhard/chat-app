@@ -133,7 +133,7 @@ export default class CustomActions extends React.Component {
         <View style={[styles.wrapper, this.props.wrapperStyle]}>
           <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity >
     );
   }
 }
